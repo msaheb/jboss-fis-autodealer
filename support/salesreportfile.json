@@ -364,7 +364,7 @@
     	},
     	{
     	  "name": "MAVEN_MIRROR_URL",
-    	  "value": "",
+    	  "value": "http://nexus-fisrepo.apps.ose.rhsummit.openshift.online/content/groups/public/",
     	  "description": "Mirror site"
     	}
     ]
