@@ -33,7 +33,15 @@
   <dataFormats>
     <jaxb contextPath="oppxml" id="oppxml"/>
   </dataFormats>
-  
+  <restConfiguration component="jetty" port="9191" >
+          <corsHeaders key="Access-Control-Allow-Origin" value="*"/>
+           <corsHeaders key="Access-Control-Allow-Methods" value="GET"/>
+      </restConfiguration>
+      <rest path="/AutoDMS">
+            <get uri="/salesTracking">
+              <to uri="direct:salesTracking"/>
+            </get>
+      </rest>
   <route id="salesTracking">
     <from uri="direct:salesTracking"/>
     <bean ref="opportunityGenerator" method="getAllList"/>
@@ -41,7 +49,14 @@
       <json prettyPrint="true" library="Jackson"/>
     </marshal>
   </route>
- 
+  <route id="inputReport">
+    <from uri="file:reportfolder"/>
+    <log message="${body}"/>
+    <split>
+      <xpath>/opportunities/oppo</xpath>
+      <to uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
+    </split>
+  </route>
 </camelContext>
 
 </beans>
