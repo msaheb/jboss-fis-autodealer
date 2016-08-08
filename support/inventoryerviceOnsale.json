@@ -2,14 +2,14 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "inventoryerviceOnsale",
+        "name": "inventoryerviceonsale",
         "uid": "ec87057c-553a-11e6-a01f-525400ac6ae1",
         "resourceVersion": "1093",
         "creationTimestamp": "2016-07-29T03:17:04Z",
         "annotations": {
             "description": "Camel route using Spring XML in a standalone Java container",
-            "fabric8.inventoryerviceOnsale/iconUrl": "https://cdn.rawgit.com/fabric8io/fabric8/master/fabric8-maven-plugin/src/main/resources/icons/camel.svg",
-            "fabric8.inventoryerviceOnsale/summary": "Camel route using Spring XML in a standalone Java container"
+            "fabric8.inventoryerviceonsale/iconUrl": "https://cdn.rawgit.com/fabric8io/fabric8/master/fabric8-maven-plugin/src/main/resources/icons/camel.svg",
+            "fabric8.inventoryerviceonsale/summary": "Camel route using Spring XML in a standalone Java container"
         }
     },
     "objects": [
@@ -267,7 +267,7 @@
     "parameters": [
     	{
       "name": "APP_NAME",
-      "value": "inventoryerviceOnsale",
+      "value": "inventoryerviceonsale",
       "description": "Application Name"
     	},
     	{
@@ -289,7 +289,7 @@
     	},
     	{
     	  "name": "SERVICE_NAME",
-    	  "value": "inventoryerviceOnsale",
+    	  "value": "inventoryerviceonsale",
     	  "description": "Exposed Service name"
     	},
     	{
