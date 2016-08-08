@@ -3,8 +3,8 @@
     "apiVersion": "v1",
     "metadata": {
         "name": "salesreportfile",
-        "namespace": "fisdemo",
-        "selfLink": "/oapi/v1/namespaces/fisdemo/templates/salesreportfile",
+        "namespace": "${IMAGE_STREAM_NAMESPACE}",
+        "selfLink": "/oapi/v1/namespaces/${IMAGE_STREAM_NAMESPACE}/templates/salesreportfile",
         "uid": "7db8e868-553b-11e6-a01f-525400ac6ae1",
         "resourceVersion": "1155",
         "creationTimestamp": "2016-07-29T03:21:08Z",
@@ -68,34 +68,6 @@
                     "group": "fisworkshop"
                 }
             }
-        },
-        {
-            "kind": "Route",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APP_NAME}",
-                "namespace": "${IMAGE_STREAM_NAMESPACE}",
-                "labels": {
-                    "app": "${APP_NAME}",
-                    "component": "${APP_NAME}",
-                    "container": "java",
-                    "group": "fisworkshop",
-                    "project": "${APP_NAME}",
-                    "provider": "fabric8",
-                    "version": "1.0.0-SNAPSHOT"
-                },
-                "annotations": {
-                    "openshift.io/host.generated": "true"
-                }
-            },
-            "spec": {
-                "host": "${SERVICE_NAME}-${IMAGE_STREAM_NAMESPACE}.rhel-cdk.10.1.2.2.xip.io",
-                "to": {
-                    "kind": "Service",
-                    "name": "${SERVICE_NAME}"
-                }
-            },
-            "status": {}
         },
         {
       "kind": "BuildConfig",
