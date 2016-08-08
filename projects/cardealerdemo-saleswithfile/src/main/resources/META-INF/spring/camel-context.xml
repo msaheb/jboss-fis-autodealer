@@ -55,6 +55,7 @@
     <split>
       <xpath>/opportunities/oppo</xpath>
       <to uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
+      <bean ref="opportunityGenerator" method="addOpportunity(${body})"/>
     </split>
   </route>
 </camelContext>
