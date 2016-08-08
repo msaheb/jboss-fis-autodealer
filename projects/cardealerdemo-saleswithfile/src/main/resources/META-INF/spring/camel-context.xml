@@ -30,11 +30,9 @@
 	<bean id="dozer" class="org.apache.camel.converter.dozer.DozerTypeConverterLoader"></bean>
   
   <camelContext xmlns="http://camel.apache.org/schema/spring">
-  
   <dataFormats>
     <jaxb contextPath="oppxml" id="oppxml"/>
   </dataFormats>
-  
   <restConfiguration component="jetty" port="9191" >
           <corsHeaders key="Access-Control-Allow-Origin" value="*"/>
            <corsHeaders key="Access-Control-Allow-Methods" value="GET"/>
