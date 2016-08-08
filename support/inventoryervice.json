@@ -2,14 +2,14 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "inventoryervice",
+        "name": "inventoryservice",
         "uid": "ec87057c-553a-11e6-a01f-525400ac6ae1",
         "resourceVersion": "1093",
         "creationTimestamp": "2016-07-29T03:17:04Z",
         "annotations": {
             "description": "Camel route using Spring XML in a standalone Java container",
-            "fabric8.inventoryervice/iconUrl": "https://cdn.rawgit.com/fabric8io/fabric8/master/fabric8-maven-plugin/src/main/resources/icons/camel.svg",
-            "fabric8.inventoryervice/summary": "Camel route using Spring XML in a standalone Java container"
+            "fabric8.inventoryservice/iconUrl": "https://cdn.rawgit.com/fabric8io/fabric8/master/fabric8-maven-plugin/src/main/resources/icons/camel.svg",
+            "fabric8.inventoryservice/summary": "Camel route using Spring XML in a standalone Java container"
         }
     },
     "objects": [
@@ -117,7 +117,6 @@
           "sourceStrategy": {
             "from": {
               "kind": "ImageStreamTag",
-              "namespace": "${IMAGE_STREAM_NAMESPACE}",
               "name": "fis-java-openshift:${BUILDER_VERSION}"
             },
             "incremental": true,
@@ -267,7 +266,7 @@
     "parameters": [
     	{
       "name": "APP_NAME",
-      "value": "inventoryervice",
+      "value": "inventoryservice",
       "description": "Application Name"
     	},
     	{
@@ -289,7 +288,7 @@
     	},
     	{
     	  "name": "SERVICE_NAME",
-    	  "value": "inventoryervice",
+    	  "value": "inventoryservice",
     	  "description": "Exposed Service name"
     	},
     	{
