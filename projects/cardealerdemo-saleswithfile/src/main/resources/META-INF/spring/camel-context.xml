@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
      Copyright 2005-2015 Red Hat, Inc.
@@ -15,25 +14,17 @@
      implied.  See the License for the specific language governing
      permissions and limitations under the License.
 
--->
-<!-- Configures the Camel Context-->
-
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:camel="http://camel.apache.org/schema/spring"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+--><!-- Configures the Camel Context--><beans xmlns="http://www.springframework.org/schema/beans" xmlns:camel="http://camel.apache.org/schema/spring" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
 	
-	<bean id="opportunityGenerator" class="com.redhat.fis.dms.mockprocessor.OpportunityGenerator"></bean>
-	<bean id="dozer" class="org.apache.camel.converter.dozer.DozerTypeConverterLoader"></bean>
+	<bean class="com.redhat.fis.dms.mockprocessor.OpportunityGenerator" id="opportunityGenerator"/>
+	<bean class="org.apache.camel.converter.dozer.DozerTypeConverterLoader" id="dozer"/>
   
-  <camelContext xmlns="http://camel.apache.org/schema/spring">
+  <camelContext xmlns="http://camel.apache.org/schema/spring" id="camelContext-436f6278-d236-4866-bd17-ccc9555a0fca">
   <dataFormats>
     <jaxb contextPath="oppxml" id="oppxml"/>
   </dataFormats>
-  <restConfiguration component="jetty" port="9191" >
+  <restConfiguration component="jetty" port="9191">
           <corsHeaders key="Access-Control-Allow-Origin" value="*"/>
            <corsHeaders key="Access-Control-Allow-Methods" value="GET"/>
   </restConfiguration>
@@ -43,21 +34,22 @@
             </get>
       </rest>
   <route id="salesTracking">
-    <from uri="direct:salesTracking"/>
-    <bean ref="opportunityGenerator" method="getAllList"/>
-    <marshal>
-      <json prettyPrint="true" library="Jackson"/>
+    
+    <from id="_from1" uri="direct:salesTracking"/>
+    <bean id="_bean1" method="getAllList" ref="opportunityGenerator"/>
+         <marshal id="_marshal1">
+      <json library="Jackson" prettyPrint="true"/>
     </marshal>
   </route>
   <route id="inputReport">
-            <from id="_from2" uri="file:reportfolder"/>
-            <log id="_log1" message="${body}"/>
-            <split id="_split1">
-                <xpath>/opportunities/oppo</xpath>
-                <to id="_to1" uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
-                <bean id="_bean2" ref="opportunityGenerator"/>
-            </split>
-        </route>
+    
+    <from id="_from2" uri="file:reportfolder"/>
+    <log id="_log1" message="${body}"/>
+         <split id="_split1">
+      <xpath>/opportunities/oppo</xpath>
+      <to id="_to1" uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
+    </split>
+  </route>
 </camelContext>
 
 </beans>
