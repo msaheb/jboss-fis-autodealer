@@ -50,14 +50,14 @@
     </marshal>
   </route>
   <route id="inputReport">
-    <from uri="file:reportfolder"/>
-    <log message="${body}"/>
-    <split>
-      <xpath>/opportunities/oppo</xpath>
-      <to uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
-      <bean ref="opportunityGenerator" method="addOpportunity(${body})"/>
-    </split>
-  </route>
+            <from id="_from2" uri="file:reportfolder"/>
+            <log id="_log1" message="${body}"/>
+            <split id="_split1">
+                <xpath>/opportunities/oppo</xpath>
+                <to id="_to1" uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
+                <bean id="_bean2" ref="opportunityGenerator"/>
+            </split>
+        </route>
 </camelContext>
 
 </beans>
